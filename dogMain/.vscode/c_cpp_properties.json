@@ -43,6 +43,7 @@
         "-I/home/tomek/.arduino15/internal/Adafruit_BusIO_1.17.4_7b46ea3f5fdb9ecd/Adafruit BusIO",
         "-I/home/tomek/.arduino15/internal/Adafruit_PWM_Servo_Driver_Library_3.0.2_6aae7e5b4a82581c/Adafruit PWM Servo Driver Library",
         "-I/home/tomek/.arduino15/internal/esp32_esp32_3.3.5_6370445710a6615a/libraries/Wire/src",
+        "-I/home/tomek/.arduino15/internal/esp32_esp32_3.3.5_6370445710a6615a/libraries/BluetoothSerial/src",
         "-I/home/tomek/.arduino15/internal/esp32_esp32_3.3.5_6370445710a6615a/libraries/SPI/src",
         "@/home/tomek/Programowanie/DogRobot/dogMain/build/build_ESP32/build_opt.h",
         "@/home/tomek/Programowanie/DogRobot/dogMain/build/build_ESP32/file_opts",

@@ -1,29 +1,11 @@
 #include <Adafruit_PWMServoDriver.h>
+#include "BluetoothSerial.h"
+#include "dog_legs_config.h"
 
 Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
+BluetoothSerial SerialBT;
 
-#define SERVO_MIN 120 // this is the 'minimum' pulse length count (out of 4096)
-#define SERVO_MAX 600 // this is the 'maximum' pulse length count (out of 4096)
-
-// Left front leg
-#define LFL_HIP 0
-#define LFL_KNEE 1
-#define LFL_ANKLE 2
-
-// Right front leg
-#define RFL_HIP 4
-#define RFL_KNEE 5
-#define RFL_ANKLE 6
-
-// Left back leg
-#define LBL_HIP 8
-#define LBL_KNEE 9
-#define LBL_ANKLE 10
-
-// Right back leg
-#define RBL_HIP 12
-#define RBL_KNEE 13
-#define RBL_ANKLE 14
+#define BT_NAME "RoboDog"
 
 void setup()
 {
@@ -32,6 +14,15 @@ void setup()
   pwm.setPWMFreq(60);
 
   resetAllHips();
+
+  if (!SerialBT.begin(BT_NAME))
+  {
+    Serial.println("An error occurred initializing Bluetooth");
+  }
+  else
+  {
+    Serial.println("Bluetooth initialized");
+  }
 }
 
 void loop()
