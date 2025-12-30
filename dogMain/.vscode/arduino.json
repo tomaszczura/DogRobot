@@ -1,5 +1,5 @@
 {
-  "port": "/dev/ttyUSB0",
+  "port": "/dev/ttyUSB1",
   "configuration": "UploadSpeed=921600,CPUFreq=240,FlashFreq=80,FlashMode=qio,FlashSize=4M,PartitionScheme=default,DebugLevel=none,PSRAM=enabled,EraseFlash=none",
   "output": "build",
   "board": "esp32:esp32:esp32wroverkit",
@@ -10,7 +10,7 @@
   "compile_profile": "ESP32",
   "monitorPortSettings": {
     "settings": {
-      "port": "/dev/ttyUSB0",
+      "port": "/dev/ttyUSB1",
       "baudRate": 115200,
       "lineEnding": "\r\n",
       "dataBits": 8,

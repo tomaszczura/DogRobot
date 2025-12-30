@@ -1,15 +1,20 @@
 {
   "expo": {
-    "name": "robo-dog-mobile",
+    "name": "RoboDog",
     "slug": "robo-dog-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "robodogmobile",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSBluetoothAlwaysUsageDescription": "This app uses Bluetooth to communicate with your RoboDog",
+        "NSBluetoothPeripheralUsageDescription": "This app uses Bluetooth to communicate with your RoboDog"
+      },
+      "bundleIdentifier": "com.anonymous.robodogmobile"
     },
     "android": {
       "adaptiveIcon": {
@@ -20,7 +25,14 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.anonymous.robodogmobile"
+      "package": "com.anonymous.robodogmobile",
+      "permissions": [
+        "android.permission.BLUETOOTH",
+        "android.permission.BLUETOOTH_ADMIN",
+        "android.permission.BLUETOOTH_SCAN",
+        "android.permission.BLUETOOTH_CONNECT",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ]
     },
     "plugins": [
       "expo-router",
@@ -38,7 +50,7 @@
       ]
     ],
     "experiments": {
-      "typedRoutes": true,
+      "typedRoutes": false,
       "reactCompiler": true
     }
   }

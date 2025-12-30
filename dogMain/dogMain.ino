@@ -7,11 +7,16 @@ BluetoothSerial SerialBT;
 
 #define BT_NAME "RoboDog"
 
+#define BT_CONN_LED_PIN 13
+
 void setup()
 {
   Serial.begin(115200);
   pwm.begin();
   pwm.setPWMFreq(60);
+
+  pinMode(BT_CONN_LED_PIN, OUTPUT);
+  digitalWrite(BT_CONN_LED_PIN, LOW);
 
   resetAllHips();
 
@@ -27,39 +32,36 @@ void setup()
 
 void loop()
 {
-  // pwm.setPWM(LFL_HIP, 0, angleHIPulse(0));
-  // delay(2000);
-  // pwm.setPWM(RFL_HIP, 0, angleHIPulse(0));
-  // delay(2000);
-  // pwm.setPWM(LBL_HIP, 0, angleHIPulse(0));
-  // delay(2000);
-  // pwm.setPWM(RBL_HIP, 0, angleHIPulse(0));
-  // delay(2000);
+  if (SerialBT.hasClient())
+  {
+    digitalWrite(BT_CONN_LED_PIN, HIGH);
 
-  // pwm.setPWM(LFL_HIP, 0, angleHIPulse(90));
-  // delay(2000);
-  // pwm.setPWM(RFL_HIP, 0, angleHIPulse(90));
-  // delay(2000);
-  // pwm.setPWM(LBL_HIP, 0, angleHIPulse(90));
-  // delay(2000);
-  // pwm.setPWM(RBL_HIP, 0, angleHIPulse(90));
-
-  // delay(2000);
-
-  // pwm.setPWM(LFL_HIP, 0, angleHIPulse(180));
-  // delay(2000);
-  // pwm.setPWM(RFL_HIP, 0, angleHIPulse(180));
-  // delay(2000);
-  // pwm.setPWM(LBL_HIP, 0, angleHIPulse(180));
-  // delay(2000);
-  // pwm.setPWM(RBL_HIP, 0, angleHIPulse(180));
-  // delay(2000);
+    if (SerialBT.available())
+    {
+      readCommandFromBT();
+    }
+  }
+  else
+  {
+    digitalWrite(BT_CONN_LED_PIN, HIGH);
+    delay(2000);
+    digitalWrite(BT_CONN_LED_PIN, LOW);
+    delay(2000);
+  }
 }
 
 int angleHIPulse(int ang)
 {
   int pulse = map(ang, 0, 180, SERVO_MIN, SERVO_MAX);
   return pulse;
+}
+
+void readCommandFromBT()
+{
+
+  String command = SerialBT.readStringUntil('\n');
+  Serial.print("Received command via BT: ");
+  Serial.println(command);
 }
 
 void resetAllHips()
