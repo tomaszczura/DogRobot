@@ -77,6 +77,10 @@ export const ControllerScreen = () => {
     router.replace({ pathname: '/' });
   };
 
+  const handleOpenCamera = () => {
+    router.push({ pathname: '/camera' });
+  };
+
   return (
     <View className="flex-1 bg-gray-900">
       <StatusBar hidden />
@@ -117,6 +121,13 @@ export const ControllerScreen = () => {
             {connectedDevice?.name || 'RoboDog'}
           </Text>
         </View>
+        <TouchableOpacity
+          className="flex-row items-center gap-1 px-3 py-1 bg-blue-600 rounded-lg"
+          onPress={handleOpenCamera}
+        >
+          <Ionicons name="videocam" size={14} color="white" />
+          <Text className="text-white text-xs font-medium">Camera</Text>
+        </TouchableOpacity>
         <TouchableOpacity
           className="flex-row items-center gap-1 px-3 py-1 bg-gray-700 rounded-lg"
           onPress={handleDisconnect}
